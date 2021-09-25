@@ -1,4 +1,4 @@
-package model
+package Model
 
 import (
 	"gorm.io/gorm"
@@ -10,8 +10,9 @@ type Blog struct {
 	CategoryID int  `json:"category_id"`
 	Category   Category
 	Title      string    `json:"title"`
+	Slug       string    `json:"slug"`
 	PhotoBlog  string    `json:"photo_blog"`
-	Content    string    `json:"content" gorm:"type:text"`
+	Content    string    `json:"content"`
 	Comments   []Comment `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }
 

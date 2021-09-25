@@ -1,13 +1,13 @@
-package model
+package Model
 
 import "gorm.io/gorm"
 
 type User struct {
 	gorm.Model
-	Email        string `json:"email"`
-	Password     string `json:"assword"`
+	Username     string `json:"username"`
+	Password     string `json:"password"`
 	Fullname     string `json:"fullname"`
-	Role         string `gorm:"default:writer"`
+	Role         string `json:"role" gorm:"default:writer"`
 	PhotoProfile string `json:"photo_profile"`
 	Blogs        []Blog `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }

@@ -1,4 +1,4 @@
-package model
+package Model
 
 import "gorm.io/gorm"
 
@@ -8,7 +8,7 @@ type Favorit struct {
 	BlogID    int    `json:"blog_id"`
 	Blog      Blog   `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	Commenter string `json:"commenter"`
-	Content   string `json:"content" gorm:"type:text"`
+	Content   string `json:"content"`
 }
 
 func (b *Favorit) TableName() string {
