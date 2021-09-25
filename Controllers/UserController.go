@@ -3,7 +3,6 @@ package Controllers
 import (
 	"jccblog/Model"
 	"jccblog/Utils"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -23,7 +22,6 @@ func GetAllUsers(c *gin.Context) {
 func CreateNewUser(c *gin.Context) {
 	var user Model.User
 	c.BindJSON(&user)
-	log.Println(user)
 
 	validatedPhotoProfile, err := Utils.ValidateUrl(user.PhotoProfile)
 
@@ -36,6 +34,6 @@ func CreateNewUser(c *gin.Context) {
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
-		c.JSON(http.StatusCreated, gin.H{"message": "User created"})
+		c.JSON(http.StatusCreated, gin.H{"message": "User created", "data": user})
 	}
 }

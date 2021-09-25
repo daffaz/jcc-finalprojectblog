@@ -20,31 +20,22 @@ func CreateUser(user *User) error {
 	return nil
 }
 
-// // GetBlogById... Fetch a single blog by it's blog_id
-// func GetBlogById(blog *Blog, id string) error {
-// 	if err := Config.DB.Where("id = ?", id).First(blog).Error; err != nil {
-// 		return err
-// 	}
-// 	return nil
-// }
+// GetUserById... Fetch a single user by it's user_id
+func GetUserById(user *User, id string) error {
+	if err := Config.DB.Where("id = ?", id).First(user).Error; err != nil {
+		return err
+	}
+	return nil
+}
 
-// // GetBlogBySlug... Fetch a single blog by it's slug
-// func GetBlogBySlug(blog *Blog, slug string) error {
-// 	if err := Config.DB.Where("slug = ?", slug).First(blog).Error; err != nil {
-// 		return err
-// 	}
-// 	return nil
-// }
+// UpdateUser... Update a single user by it's id
+func UpdateUser(user *User, id string) error {
+	Config.DB.Save(user)
+	return nil
+}
 
-// // UpdateBlog... Update a single blog by it's id
-// func UpdateBlog(blog *Blog, id string) error {
-// 	log.Println(blog)
-// 	Config.DB.Save(blog)
-// 	return nil
-// }
-
-// // DeleteBlog... Delete a single blog by it's id
-// func DeleteBlog(blog *Blog, id string) error {
-// 	Config.DB.Where("id = ?", id).Delete(blog)
-// 	return nil
-// }
+// DeleteUser... Delete a single user by it's id
+func DeleteUser(user *User, id string) error {
+	Config.DB.Where("id = ?", id).Delete(user)
+	return nil
+}

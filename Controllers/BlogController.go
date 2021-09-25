@@ -3,7 +3,6 @@ package Controllers
 import (
 	"jccblog/Model"
 	"jccblog/Utils"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -53,7 +52,6 @@ func CreateNewBlog(c *gin.Context) {
 
 	blog.Slug = slug.Make(blog.Title)
 	blog.PhotoBlog = validatedPhotoBlog
-	log.Println(blog)
 	err = Model.CreateBlog(&blog)
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
@@ -62,7 +60,7 @@ func CreateNewBlog(c *gin.Context) {
 	}
 }
 
-func UpdateUser(c *gin.Context) {
+func UpdateBlog(c *gin.Context) {
 	var blog Model.Blog
 	id := c.Params.ByName("id")
 	err := Model.GetBlogById(&blog, id)
@@ -78,8 +76,8 @@ func UpdateUser(c *gin.Context) {
 	}
 }
 
-//DeleteUser ... Delete the user
-func DeleteUser(c *gin.Context) {
+//DeleteBlog ... Delete the blog
+func DeleteBlog(c *gin.Context) {
 	var blog Model.Blog
 	id := c.Params.ByName("id")
 	err := Model.DeleteBlog(&blog, id)

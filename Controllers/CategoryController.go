@@ -2,6 +2,7 @@ package Controllers
 
 import (
 	"jccblog/Model"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -24,6 +25,7 @@ func CreateNewCategory(c *gin.Context) {
 
 	err := Model.CreateCategory(&category)
 	if err != nil {
+		log.Println(err)
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
 		c.JSON(http.StatusCreated, category)
