@@ -5,13 +5,12 @@ import (
 	"jccblog/Utils"
 	"net/http"
 
+	docs "jccblog/docs"
+
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
-
-// docs "jccblog/docs"
-
-// 	swaggerFiles "github.com/swaggo/files"
-// 	ginSwagger "github.com/swaggo/gin-swagger"
 
 var adminList = map[string]string{}
 var writerList = map[string]string{}
@@ -95,7 +94,7 @@ func SetupRouter() *gin.Engine {
 		c.String(http.StatusOK, "Hello you found the root of the this API URL, go to http://localhost:8080/docs/index.html for detailed documentation what you can do")
 	})
 
-	// docs.SwaggerInfo.BasePath = "/"
-	// r.GET("docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	docs.SwaggerInfo.BasePath = "/"
+	r.GET("docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	return r
 }

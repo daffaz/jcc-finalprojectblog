@@ -1,0 +1,577 @@
+basePath: /
+definitions:
+  Model.Bantuan:
+    properties:
+      content:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: integer
+      updatedAt:
+        type: string
+      user:
+        $ref: '#/definitions/Model.User'
+      user_id:
+        type: integer
+    type: object
+  Model.Blog:
+    properties:
+      category_id:
+        type: integer
+      content:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: integer
+      photo_blog:
+        type: string
+      slug:
+        type: string
+      title:
+        type: string
+      updatedAt:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  Model.Category:
+    properties:
+      category_name:
+        type: string
+      id:
+        type: integer
+    type: object
+  Model.Comment:
+    properties:
+      blog_id:
+        type: integer
+      commenter:
+        type: string
+      content:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  Model.Favorit:
+    properties:
+      blog_id:
+        type: integer
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: integer
+      updatedAt:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  Model.User:
+    properties:
+      blogs:
+        items:
+          $ref: '#/definitions/Model.Blog'
+        type: array
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      fullname:
+        type: string
+      id:
+        type: integer
+      password:
+        type: string
+      photo_profile:
+        type: string
+      role:
+        type: string
+      updatedAt:
+        type: string
+      username:
+        type: string
+    type: object
+  Model.UserMeta:
+    properties:
+      country:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      gender:
+        type: string
+      id:
+        type: integer
+      photo_banner:
+        type: string
+      updatedAt:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: Daffa Zaky
+    url: http://www.swagger.io/support
+  description: 'This Project is still production ready and still receive support from
+    developer. For admin account (username : daffaz, password : admin), writer account
+    (username : william, password: shakespear)'
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Final Project | Blog API with Gin, Gorm and Gosimple/Slug
+  version: 1.0.0
+paths:
+  /api/bantuan:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show all the 'bantuan' data that is sent
+        from the user. Only admin can access this endpoint
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Model.Bantuan'
+            type: array
+      summary: Show all 'bantuan' data sent from the user.
+      tags:
+      - bantuan
+    post:
+      consumes:
+      - application/json
+      description: Use this endpoint with POST method if you want to create a new
+        bantuan.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Bantuan'
+      summary: For creating a new bantuan.
+      tags:
+      - bantuan
+  /api/blogs:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show all the blogs data that is sent
+        from the user. Only registered user can see what other already post
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Model.Blog'
+            type: array
+      summary: Show all blogs data sent from the user.
+      tags:
+      - blogs
+    post:
+      consumes:
+      - application/json
+      description: Use this endpoint with POST method if you want to create a new
+        blog.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Blog'
+      summary: For creating a new blog.
+      tags:
+      - blog
+  /api/blogs/{id}:
+    delete:
+      description: Use this endpoint with DELETE method if you want to delete a  blog.
+      parameters:
+      - description: Blog ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Blog'
+      summary: For deleting a blog.
+      tags:
+      - blog
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show blog data that is sent from the
+        user
+      parameters:
+      - description: Blog ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Blog'
+      summary: Show blog data by ID.
+      tags:
+      - blogs
+    put:
+      consumes:
+      - application/json
+      description: Use this endpoint with PUT method if you want to update a  blog.
+      parameters:
+      - description: Blog ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Blog'
+      summary: For updating a blog.
+      tags:
+      - blog
+  /api/blogs/{slug}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show blog data that is sent from the
+        user
+      parameters:
+      - description: Blog slug
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Blog'
+      summary: Show blog data by slug.
+      tags:
+      - blogs
+  /api/categories:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show all categories data .
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Model.Blog'
+            type: array
+      summary: Show all categories data.
+      tags:
+      - categories
+    post:
+      consumes:
+      - application/json
+      description: Use this endpoint with POST method if you want to create a new
+        category Only admin can post category.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Category'
+      summary: For creating a new category.
+      tags:
+      - category
+  /api/comment:
+    post:
+      consumes:
+      - application/json
+      description: Use this endpoint with POST method if you want to create a new
+        comment.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Comment'
+      summary: For creating a new blog's comment.
+      tags:
+      - blog
+  /api/comment/{id}:
+    delete:
+      description: Use this endpoint with DELETE method if you want to delte a  comment.
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Comment'
+      summary: For deleting a blog.
+      tags:
+      - comment
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show comments of some blogs data that
+        is sent from the user
+      parameters:
+      - description: Comment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Comment'
+      summary: Show comment of blogs data by ID.
+      tags:
+      - comment
+  /api/favorit:
+    post:
+      consumes:
+      - application/json
+      description: Use this endpoint with POST method if you want to create a new
+        favorit.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Favorit'
+      summary: For creating a new favorit.
+      tags:
+      - blog
+  /api/favorit/{id}:
+    delete:
+      description: Use this endpoint with DELETE method if you want to delete a favorit.
+      parameters:
+      - description: Favorit ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.Favorit'
+      summary: For deleting a favorit.
+      tags:
+      - favorit
+  /api/favorit/user_id/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show what user favorite's blog
+      parameters:
+      - description: Favorit ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Model.Favorit'
+            type: array
+      summary: Show blogs favorit data by User ID.
+      tags:
+      - favorit
+  /api/register:
+    post:
+      consumes:
+      - application/json
+      description: Use this endpoint with POST method if you want to create a new
+        user.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.User'
+      summary: For creating a new user (register).
+      tags:
+      - blog
+  /api/usermeta:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show usermeta from users.
+      parameters:
+      - description: UserMetaID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.UserMeta'
+      summary: Show usermeta data .
+      tags:
+      - usermeta
+    post:
+      consumes:
+      - application/json
+      description: Use this endpoint with POST method if you want to create a new
+        user meta.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.UserMeta'
+      summary: For creating a new user meta data.
+      tags:
+      - usermeta
+  /api/users:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show all the registered users that is
+        sent from the user. Only admin can see this
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Model.User'
+            type: array
+      summary: Show all users, of course only user with admin role can see this
+      tags:
+      - blogs
+  /api/users/{id}:
+    delete:
+      description: Use this endpoint with DELETE method if you want to delete a user.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.User'
+      summary: For deleting a user.
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: This endpoint intended to show user data that is sent from the
+        user
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.User'
+      summary: Show user data by ID.
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      description: Use this endpoint with PUT method if you want to update a user
+        data.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Model.User'
+      summary: For updating a user.
+      tags:
+      - users
+schemes:
+- http
+swagger: "2.0"

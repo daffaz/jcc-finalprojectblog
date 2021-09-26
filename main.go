@@ -15,7 +15,7 @@ var err error
 
 // @title Final Project | Blog API with Gin, Gorm and Gosimple/Slug
 // @version 1.0.0
-// @description This Project is still production ready and still receive support from developer.
+// @description This Project is still production ready and still receive support from developer. For admin account (username : daffaz, password : admin), writer account (username : william, password: shakespear)
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name Daffa Zaky
@@ -38,7 +38,7 @@ func main() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		port = "10000"
+		port = "8080"
 	}
 
 	Config.DB.AutoMigrate(&Model.Blog{})
