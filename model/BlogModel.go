@@ -12,7 +12,7 @@ type Blog struct {
 	Slug       string    `json:"slug"`
 	PhotoBlog  string    `json:"photo_blog"`
 	Content    string    `json:"content"`
-	Comments   []Comment `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	Comments   []Comment `json:"-" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	CategoryID int       `json:"category_id"`
 	Category   Category  `json:"-"`
 }
