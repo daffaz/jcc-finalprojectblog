@@ -5,6 +5,9 @@ go 1.17
 require (
 	github.com/gin-gonic/gin v1.7.4
 	github.com/gosimple/slug v1.10.0
+	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2
+	github.com/swaggo/gin-swagger v1.3.2
+	github.com/swaggo/swag v1.5.1
 	gorm.io/driver/mysql v1.1.2
 	gorm.io/gorm v1.21.15
 )
@@ -32,9 +35,6 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
-	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2 // indirect
-	github.com/swaggo/gin-swagger v1.3.2 // indirect
-	github.com/swaggo/swag v1.5.1 // indirect
 	github.com/ugorji/go/codec v1.2.6 // indirect
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
 	golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d // indirect
