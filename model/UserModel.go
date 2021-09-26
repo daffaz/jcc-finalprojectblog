@@ -2,6 +2,8 @@ package Model
 
 import "gorm.io/gorm"
 
+// User represents the model for a user
+
 type User struct {
 	gorm.Model
 	Username     string `json:"username"`

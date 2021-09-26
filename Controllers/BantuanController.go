@@ -11,7 +11,7 @@ import (
 // GetAllBantuan responds with the list of all albums as JSON.
 // GetAllBantuan godoc
 // @Summary Show all 'bantuan' data sent from the user.
-// @Description This endpoint intended to show all the 'bantuan' data that is sent from the user.
+// @Description This endpoint intended to show all the 'bantuan' data that is sent from the user. Only admin can access this endpoint
 // @Tags bantuan
 // @Accept  json
 // @Produce  json

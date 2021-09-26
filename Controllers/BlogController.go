@@ -9,6 +9,15 @@ import (
 	"github.com/gosimple/slug"
 )
 
+// GetAllBlogs responds with the list of all blogs as JSON.
+// GetAllBlogs godoc
+// @Summary Show all blogs data sent from the user.
+// @Description This endpoint intended to show all the blogs data that is sent from the user. Only registered user can see what other already post
+// @Tags blogs
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} Model.Blog
+// @Router /api/blogs [get]
 func GetAllBlogs(c *gin.Context) {
 	var blog []Model.Blog
 
@@ -20,6 +29,16 @@ func GetAllBlogs(c *gin.Context) {
 	}
 }
 
+// GetBlogDataById responds with the blog data as JSON.
+// GetBlogDataById godoc
+// @Summary Show blog data by ID.
+// @Description This endpoint intended to show blog data that is sent from the user
+// @Tags blogs
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Blog ID"
+// @Success 200 {object} Model.Blog
+// @Router /api/blogs/{id} [get]
 func GetBlogDataById(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var blog Model.Blog
@@ -31,6 +50,16 @@ func GetBlogDataById(c *gin.Context) {
 	}
 }
 
+// GetBlogDataBySlug responds with the list of all blogs as JSON.
+// GetBlogDataBySlug godoc
+// @Summary Show blog data by slug.
+// @Description This endpoint intended to show blog data that is sent from the user
+// @Tags blogs
+// @Accept  json
+// @Produce  json
+// @Param slug path string true "Blog slug"
+// @Success 200 {object} Model.Blog
+// @Router /api/blogs/{slug} [get]
 func GetBlogDataBySlug(c *gin.Context) {
 	id := c.Params.ByName("slug")
 	var blog Model.Blog
@@ -42,6 +71,14 @@ func GetBlogDataBySlug(c *gin.Context) {
 	}
 }
 
+// CreateNewBlog godoc
+// @Summary For creating a new blog.
+// @Description Use this endpoint with POST method if you want to create a new blog.
+// @Tags blog
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Model.Blog
+// @Router /api/blogs [post]
 func CreateNewBlog(c *gin.Context) {
 	var blog Model.Blog
 	c.BindJSON(&blog)
@@ -60,6 +97,15 @@ func CreateNewBlog(c *gin.Context) {
 	}
 }
 
+// UpdateBlog godoc
+// @Summary For updating a blog.
+// @Description Use this endpoint with PUT method if you want to update a  blog.
+// @Tags blog
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Blog ID"
+// @Success 200 {object} Model.Blog
+// @Router /api/blogs/{id} [put]
 func UpdateBlog(c *gin.Context) {
 	var blog Model.Blog
 	id := c.Params.ByName("id")
@@ -76,7 +122,14 @@ func UpdateBlog(c *gin.Context) {
 	}
 }
 
-//DeleteBlog ... Delete the blog
+// DeleteBlog godoc
+// @Summary For deleting a blog.
+// @Description Use this endpoint with DELETE method if you want to delete a  blog.
+// @Tags blog
+// @Produce  json
+// @Param id path int true "Blog ID"
+// @Success 200 {object} Model.Blog
+// @Router /api/blogs/{id} [delete]
 func DeleteBlog(c *gin.Context) {
 	var blog Model.Blog
 	id := c.Params.ByName("id")

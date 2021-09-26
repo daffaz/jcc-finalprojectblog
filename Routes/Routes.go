@@ -58,7 +58,7 @@ func SetupRouter() *gin.Engine {
 		 * ----- UserMeta
 		**/
 		apiGroup.GET("usermeta/:id", Controllers.GetUserMeta)
-		apiGroup.POST("usermeta/", Controllers.CreateNewUserMeta)
+		apiGroup.POST("usermeta", Controllers.CreateNewUserMeta)
 		/*
 		 * ----- Blogs
 		**/
@@ -86,6 +86,7 @@ func SetupRouter() *gin.Engine {
 		 * ----- Favorit
 		**/
 		apiGroup.GET("favorit/user_id/:id", Controllers.GetAllFavoritByUID)
+		apiGroup.DELETE("favorit/:id", Controllers.DeleteFavorit)
 		apiGroup.POST("favorit", Controllers.CreateNewFavorit)
 	}
 	// This is for the new user, so they can register

@@ -18,11 +18,11 @@ type DBConfig struct {
 
 func BuildDBConfig() *DBConfig {
 	dbConfig := DBConfig{
-		Host:     "localhost",
+		Host:     "db4free.net",
 		Port:     3306,
-		User:     "root",
-		Password: "",
-		DBName:   "jcc_finalproj",
+		User:     "daffaz",
+		Password: "makanlah123",
+		DBName:   "jccfinalblog",
 	}
 
 	return &dbConfig

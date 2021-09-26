@@ -2,6 +2,7 @@ package Model
 
 import "gorm.io/gorm"
 
+// Bantuan represents the model for a bantuan
 type Bantuan struct {
 	gorm.Model
 	UserID  int    `json:"user_id"`

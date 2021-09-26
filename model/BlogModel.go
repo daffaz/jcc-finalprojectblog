@@ -4,6 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// Blog represents the model for a blog
 type Blog struct {
 	gorm.Model
 	UserID     uint      `json:"user_id"`

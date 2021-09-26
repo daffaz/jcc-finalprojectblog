@@ -2,6 +2,7 @@ package Model
 
 import "gorm.io/gorm"
 
+// Favorit represents the model for a favorit
 type Favorit struct {
 	gorm.Model
 	UserID uint `json:"user_id"`
